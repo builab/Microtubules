@@ -1,3 +1,6 @@
+# NOTE
+This is a merge from Zhe's filament tool topaz & also Shintaroh's Relion scripts. To be edited later.
+
 # filament_tool_topaz
 
 filament_tool_topaz is an application to process topaz machine learning picking jobs conducted on micrographs of flamentous molecules.
