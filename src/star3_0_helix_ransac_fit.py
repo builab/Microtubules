@@ -8,7 +8,7 @@ Created on Sat Jun  6 17:35:42 2020
 @author: kbui2
 
 Using zhefan's RANSAC code to fit
-lost of stuff to fix
+Work ok for now but can be improved.
 """
 
 import os, sys, argparse, os.path, glob, math
