@@ -230,7 +230,7 @@ if __name__=='__main__':
 
 			else:
 				microlist[microname] = micronum
-				print(" Fitting Micrograph ", micronum)
+				print(" Processing Micrograph ", micronum)
 				if micronum > 1:
 					if len(helicalrecord) > minpart:
 						fittedhelicalrecord = interpol_helix(helicalrecord, binfactor, spacing, helicalid)
@@ -244,7 +244,7 @@ if __name__=='__main__':
 							oriy = [float(row[1]) for row in helicalrecord]
 							ax1.scatter(orix, oriy)
 							ax1.set_title(microname)
-							print('Writing fitted plot')
+							print('Writing fitted plot for micrograph ', micronum)
 							fig1.savefig(microname.replace(".mrc", ".png"))
 							ax1 = None
 					# Write out
