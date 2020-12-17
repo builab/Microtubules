@@ -10,6 +10,7 @@ Created on Sat Jun  6 17:35:42 2020
 
 Using zhefan's RANSAC code to fit
 lost of stuff to fix
+In the future: output the histogram of microtubule length
 """
 
 import os, sys, argparse, os.path, glob, math
@@ -246,6 +247,8 @@ if __name__=='__main__':
 							ax1.set_title(microname)
 							print('Writing fitted plot for micrograph ', micronum)
 							fig1.savefig(args.im + "/" + microname.replace(".mrc", ".png"))
+							fig1.close()
+							fig1 = plt.figure(1)
 							ax1 = None
 					# Write out
 					helicalrecord = []
