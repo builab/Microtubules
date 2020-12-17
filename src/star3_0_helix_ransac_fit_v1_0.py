@@ -226,7 +226,7 @@ if __name__=='__main__':
 
 			else:
 				microlist[microname] = micronum
-				print(" microname ", micronum)
+				print(" Fitting Micrograph ", micronum)
 				if micronum > 1:
 					if len(helicalrecord) > minpart:
 						fittedhelicalrecord = interpol_helix(helicalrecord, binfactor, spacing, helicalid)
