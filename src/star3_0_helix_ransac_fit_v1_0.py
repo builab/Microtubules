@@ -234,10 +234,12 @@ if __name__=='__main__':
 						writestarblock(outstar, fittedhelicalrecord)
 						if (args.im == "1"):
 							ax1 = fig1.gca()
-							x = [row[coordxcol] for row in fittedhelicalrecord]
-							y = [row[coordycol] for row in fittedhelicalrecord]
-							ax1.plot(float(x), float(y), color="purple")
-							ax1.scatter(float(helicalrecord[:, 0]), float(helicalrecord[:, 1]))
+							x = [float(row[coordxcol]) for row in fittedhelicalrecord]
+							y = [float(row[coordycol]) for row in fittedhelicalrecord]
+							ax1.plot(x, y, color="purple")
+							orix = [float(row[0]) for row in helicalrecord]
+							oriy = [float(row[1]) for row in helicalrecord]
+							ax1.scatter(orix, oriy)
 							ax1.set_title(microname)
 							print('Writing fitted plot')
 							fig1.savefig(microname.replace(".mrcs", ".png"))
