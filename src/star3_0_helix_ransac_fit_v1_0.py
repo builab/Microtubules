@@ -212,7 +212,7 @@ if __name__=='__main__':
 						writestarblock(outstar, fittedhelicalrecord)
 						# image option
 						ax1 = None
-						if args.im != "":
+						if not args.im:
 							ax1 = fig1.gca()
 							x = [float(row[coordxcol]) for row in fittedhelicalrecord]
 							y = [float(row[coordycol]) for row in fittedhelicalrecord]
@@ -235,7 +235,7 @@ if __name__=='__main__':
 					if len(helicalrecord) > minpart:
 						fittedhelicalrecord = interpol_helix(helicalrecord, binfactor, spacing, helicalid)
 						writestarblock(outstar, fittedhelicalrecord)
-						if args.im != "":
+						if not args.im:
 							ax1 = fig1.gca()
 							x = [float(row[coordxcol]) for row in fittedhelicalrecord]
 							y = [float(row[coordycol]) for row in fittedhelicalrecord]
