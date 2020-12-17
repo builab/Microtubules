@@ -247,7 +247,7 @@ if __name__=='__main__':
 							ax1.set_title(microname)
 							print('Writing fitted plot for micrograph ', micronum)
 							fig1.savefig(args.im + "/" + microname.replace(".mrc", ".png"))
-							fig1.close()
+							plt.close("all")
 							fig1 = plt.figure(1)
 							ax1 = None
 					# Write out
