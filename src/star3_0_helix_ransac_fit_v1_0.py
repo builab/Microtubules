@@ -238,6 +238,7 @@ if __name__=='__main__':
 							ax1.plot(float(x), float(y), color="purple")
 							ax1.scatter(float(helicalrecord[:, 0]), float(helicalrecord[:, 1]))
 							ax1.set_title(microname)
+							print('Writing fitted plot')
 							fig1.savefig(microname.replace(".mrcs", ".png"))
 							ax1 = None
 					# Write out
