@@ -190,7 +190,8 @@ if __name__=='__main__':
 
 	writestarheader(outstar, starlabels)
 	
-
+	fig1 = plt.figure(1)
+	
 	helicalid = 0
 	microlist ={}
 	prevhelicalid = 0
