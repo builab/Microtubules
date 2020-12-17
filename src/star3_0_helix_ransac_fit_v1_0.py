@@ -211,11 +211,11 @@ if __name__=='__main__':
 						# image option
 						ax1 = None
 						if (args.im == 1):
-               				ax1 = fig1.gca()
-               				x = [row[coordxcol] for row in fittedhelicalrecord]
-               				y = [row[coordycol] for row in fittedhelicalrecord]
-                			ax1.plot(float(x), float(y), color="purple")
-                			ax1.scatter(float(helicalrecord[:, 0]), float(helicalrecord[:, 1]))
+							ax1 = fig1.gca()
+							x = [row[coordxcol] for row in fittedhelicalrecord]
+							y = [row[coordycol] for row in fittedhelicalrecord]
+							ax1.plot(float(x), float(y), color="purple")
+							ax1.scatter(float(helicalrecord[:, 0]), float(helicalrecord[:, 1]))
 					
 					helicalid += 1
 					prevhelicalid = record[helicalidcol]
@@ -232,13 +232,14 @@ if __name__=='__main__':
 						fittedhelicalrecord = interpol_helix(helicalrecord, binfactor, spacing, helicalid)
 						writestarblock(outstar, fittedhelicalrecord)
 						if (args.im == 1):
-               					ax1 = fig1.gca()
-               					x = [row[coordxcol] for row in fittedhelicalrecord]
-               					y = [row[coordycol] for row in fittedhelicalrecord]
-                				ax1.plot(float(x), float(y), color="purple")
-                				ax1.scatter(float(helicalrecord[:, 0]), float(helicalrecord[:, 1]))
-                				ax1.set_title(microname)
-        						fig1.savefig(microname.replace(".mrcs", ".png"))
+							ax1 = fig1.gca()
+							x = [row[coordxcol] for row in fittedhelicalrecord]
+							y = [row[coordycol] for row in fittedhelicalrecord]
+							ax1.plot(float(x), float(y), color="purple")
+							ax1.scatter(float(helicalrecord[:, 0]), float(helicalrecord[:, 1]))
+							ax1.set_title(microname)
+							fig1.savefig(microname.replace(".mrcs", ".png"))
+							ax1 = None
 					# Write out
 					helicalrecord = []
 					
