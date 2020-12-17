@@ -152,7 +152,7 @@ if __name__=='__main__':
 	parser.add_argument('--spacing', help='Distance in pixel',required=True)
 	parser.add_argument('--ibin', help='Bin in current star file',required=True,default=5.079)
 	parser.add_argument('--minpart', help='Minimum number of particles for fitting',required=False,default=5)
-	parser.add_argument('--im', help='Output fitted image',required=False,default=0)
+	parser.add_argument('--im', help='Directory for output fitted image',required=False,default="")
 
 
 	#parser.add_argument('--nomicro', help='Test mode for only this number of micrographs',required=False)
@@ -212,7 +212,7 @@ if __name__=='__main__':
 						writestarblock(outstar, fittedhelicalrecord)
 						# image option
 						ax1 = None
-						if (args.im == "1"):
+						if not args.im:
 							ax1 = fig1.gca()
 							x = [float(row[coordxcol]) for row in fittedhelicalrecord]
 							y = [float(row[coordycol]) for row in fittedhelicalrecord]
@@ -235,7 +235,7 @@ if __name__=='__main__':
 					if len(helicalrecord) > minpart:
 						fittedhelicalrecord = interpol_helix(helicalrecord, binfactor, spacing, helicalid)
 						writestarblock(outstar, fittedhelicalrecord)
-						if (args.im == "1"):
+						if not args.im:
 							ax1 = fig1.gca()
 							x = [float(row[coordxcol]) for row in fittedhelicalrecord]
 							y = [float(row[coordycol]) for row in fittedhelicalrecord]
@@ -245,7 +245,7 @@ if __name__=='__main__':
 							ax1.scatter(orix, oriy)
 							ax1.set_title(microname)
 							print('Writing fitted plot for micrograph ', micronum)
-							fig1.savefig(microname.replace(".mrc", ".png"))
+							fig1.savefig(args.im + "/" + microname.replace(".mrc", ".png"))
 							ax1 = None
 					# Write out
 					helicalrecord = []
