@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Using RANSAC to fit line/slightly curve line on centered helical coordinate
+# Image option will miss the 1st micrograph
 
 """
 Created on Sat Jun  6 17:35:42 2020
