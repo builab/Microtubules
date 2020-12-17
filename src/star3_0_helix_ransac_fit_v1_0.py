@@ -244,7 +244,7 @@ if __name__=='__main__':
 							ax1.scatter(orix, oriy)
 							ax1.set_title(microname)
 							print('Writing fitted plot')
-							fig1.savefig(microname.replace(".mrcs", ".png"))
+							fig1.savefig(microname.replace(".mrc", ".png"))
 							ax1 = None
 					# Write out
 					helicalrecord = []
