@@ -8,6 +8,15 @@
 # Symmetrization
 sym #1 group h,8.72,-25.77,14*shift,3,82.0 surf true axis z center 256,256,256 res 5
 
+# Making a map of kinesin only
+select #2
+# Action/Ribbon Show
+molmap :*.K 15
+
+# Resample on the map
+vop resample #3 onGrid #0
+
+# Save as map
 
 # 13 PF
 
