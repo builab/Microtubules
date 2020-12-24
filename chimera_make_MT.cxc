@@ -1,19 +1,22 @@
-# ChimeraX script to make MT model
-open emd_8998_2.18A_seam_top_b256.mrc
+# ChimeraX script to make 14PF microtubule
+# Open a 14PF microtubule map. It doesnt need kinesin, just MT is ok.
+open emd_8998_2.18A_seam_top_b128.mrc
 
+# Set proper threshold
 volume #1 level 3 step 1 color 178,178,178 transparency .3
 
+# Open the PDB of tubulin + kinesin, fitted to the protofilament 1 of the map above.
+# If you want to make the simulated map properly in term of seam location, it have to be
+# fitted in PF1. Otherwise, it can be fitted in any PF
+# You can replace this with any single tubulin dimer + a MAP
 open 4hna_align_PF1.pdb
 
-# Making 1 round
-sym #2 h,8.72,-25.77,14 axis z center 279.04,279.04,279.04
 
-
-# Making 3 round with 82 Angstrom dimer distance
-sym #2 h,8.72,-25.77,14*shift,3,82.0 axis z center 279.04,279.04,279.04 copies true
+# Making 3 repeat of tubulin dimers with 82 Angstrom dimer distance
+sym #2 h,8.72,-25.77,14*shift,4,82.0 axis z center 279.04,279.04,279.04 copies true
 
 # If you want to make new one as surfaceOnly
-#sym #2 h,8.72,-25.77,14*shift,3,82.0 axis z center 279.04,279.04,279.04 copies true surfaceOnly true
+# sym #2 h,8.72,-25.77,14*shift,4,82.0 axis z center 279.04,279.04,279.04 copies true surfaceOnly true
 
 # Turn into a 15A map
 molmap #3 15
@@ -21,5 +24,8 @@ molmap #3 15
 # Make it the same as the original map
 volume resample #4 onGrid #1
 
-save ~/Desktop/locrec/tmp.mrc #5
+
+# Save the map
+save 14PF_kinesin_MT_molmap.mrc #5
+
 
