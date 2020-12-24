@@ -1,0 +1,25 @@
+# ChimeraX script to make MT model
+open emd_8998_2.18A_seam_top_b256.mrc
+
+volume #1 level 3 step 1 color 178,178,178 transparency .3
+
+open 4hna_align_PF1.pdb
+
+# Making 1 round
+sym #2 h,8.72,-25.77,14 axis z center 279.04,279.04,279.04
+
+
+# Making 3 round with 82 Angstrom dimer distance
+sym #2 h,8.72,-25.77,14*shift,3,82.0 axis z center 279.04,279.04,279.04 copies true
+
+# If you want to make new one as surfaceOnly
+#sym #2 h,8.72,-25.77,14*shift,3,82.0 axis z center 279.04,279.04,279.04 copies true surfaceOnly true
+
+# Turn into a 15A map
+molmap #3 15
+
+# Make it the same as the original map
+volume resample #4 onGrid #1
+
+save ~/Desktop/locrec/tmp.mrc #5
+
