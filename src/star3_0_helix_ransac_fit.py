@@ -70,7 +70,7 @@ def writestarblock(outfile,recordblock):
 	for record in recordblock:
 		writestarline(outfile, record)
 
-def interpol_helix(helicalrecord, binfactor, spacing, helicalid):
+def interpol_helix(helicalrecord, binfactor, spacing, helicalid, usetiltprior):
 	"""Interpolate to the periodicity of dist"""
 	#print(helicalid)
 	#print(*helicalrecord)
@@ -106,7 +106,10 @@ def interpol_helix(helicalrecord, binfactor, spacing, helicalid):
 		return
 		
 	psi = calculatepsi(x, y)
-	medtilt = np.median(tiltlist)
+	if usetiltprior > 0:
+		medtilt = 90
+	else:
+		medtilt = np.median(tiltlist)
 
 	partandstack=helicalrecord[0][imagecol].split('@')
 
@@ -153,6 +156,7 @@ if __name__=='__main__':
 	parser.add_argument('--spacing', help='Distance in pixel',required=True)
 	parser.add_argument('--ibin', help='Bin in current star file',required=True,default=5.079)
 	parser.add_argument('--minpart', help='Minimum number of particles for fitting',required=False,default=5)
+	parser.add_argument('--tiltprior', help='Take tilt prior instead of tilt value',required=False,default=0)
 	parser.add_argument('--im', help='Directory for output fitted image',required=False,default="")
 
 
@@ -166,6 +170,7 @@ if __name__=='__main__':
 	binfactor = float(args.ibin)
 	spacing = float(args.spacing)
 	minpart = float(args.minpart)
+	usetiltprior = float(args.tiltprior)
 	
 		
 	
@@ -209,7 +214,7 @@ if __name__=='__main__':
 			if microlist.get(microname):
 				if prevhelicalid != record[helicalidcol]:
 					if len(helicalrecord) > minpart:
-						fittedhelicalrecord = interpol_helix(helicalrecord, binfactor, spacing, helicalid)
+						fittedhelicalrecord = interpol_helix(helicalrecord, binfactor, spacing, helicalid, usetiltprior)
 						writestarblock(outstar, fittedhelicalrecord)
 						# image option
 						ax1 = None
@@ -234,7 +239,7 @@ if __name__=='__main__':
 				print(" Processing Micrograph ", micronum)
 				if micronum > 1:
 					if len(helicalrecord) > minpart:
-						fittedhelicalrecord = interpol_helix(helicalrecord, binfactor, spacing, helicalid)
+						fittedhelicalrecord = interpol_helix(helicalrecord, binfactor, spacing, helicalid, usetiltprior)
 						writestarblock(outstar, fittedhelicalrecord)
 						if args.im != "":
 							ax1 = fig1.gca()
