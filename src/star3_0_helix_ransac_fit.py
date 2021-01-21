@@ -75,8 +75,8 @@ def interpol_helix(helicalrecord, binfactor, spacing, helicalid, usetiltprior):
 	#print(helicalid)
 	#print(*helicalrecord)
 	tiltlist = np.array([])
-	spacingpixel = spacing*binfactor/(float(helicalrecord[0][detpixelsizecol])*10000/float(helicalrecord[0][magcol]))
-
+	spacingpixel = spacing/binfactor
+	
 	for i in range(len(helicalrecord)):
 		tiltlist = np.append(tiltlist, [float(helicalrecord[i][tiltcol])])
 		shiftX = float(helicalrecord[i][originxcol])*binfactor
@@ -91,7 +91,7 @@ def interpol_helix(helicalrecord, binfactor, spacing, helicalid, usetiltprior):
 	try:
 		poly_o = ransac_fit.polyfit(origin, 2, 1, disable_linear=False, directory_mode=False)
 		arclength_o = ransac_fit.arclength(poly_o)
-		x = ransac_fit.spacing(arclength_o, spacingpixel)
+		x = ransac_fit.spacing(arclength_o, spacing)
 
 		y = poly_o["model"].predict(x)
 		x = [(item[0]) for item in x]
@@ -153,7 +153,7 @@ if __name__=='__main__':
 	parser = argparse.ArgumentParser(description='Plot coordinate of star file')
 	parser.add_argument('--istar', help='Input particle star file',required=True)
 	parser.add_argument('--ostar', help='Output particle star file',required=True)
-	parser.add_argument('--spacing', help='Distance in pixel',required=True)
+	parser.add_argument('--spacing', help='Periodicity in pixels in no-bin picture',required=True)
 	parser.add_argument('--ibin', help='Bin in current star file',required=True,default=5.079)
 	parser.add_argument('--minpart', help='Minimum number of particles for fitting',required=False,default=5)
 	parser.add_argument('--tiltprior', help='Take tilt prior instead of tilt value',required=False,default=0)
