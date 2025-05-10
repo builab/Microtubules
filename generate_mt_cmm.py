@@ -1,6 +1,6 @@
 import math
 
-def generate_microtubule_cmm(filename, protofilaments=13, repeats=4, radius=120, pitch=120, dimer_dist=80):
+def generate_microtubule_cmm(filename, protofilaments=13, repeats=4, radius=110, pitch=120, dimer_dist=80):
     """
     Generate a 13-protofilament microtubule in ChimeraX CMM format.
     Alpha tubulin (dark green) and beta tubulin (blueish) alternate in each protofilament.
@@ -21,7 +21,7 @@ def generate_microtubule_cmm(filename, protofilaments=13, repeats=4, radius=120,
         # Predefined colors (normalized 0-1)
         alpha_r, alpha_g, alpha_b = 0.13333, 0.5451, 0.1333  # dark green
         beta_r, beta_g, beta_b = 0.39216, 0.58431, 0.92941    # blueish
-        radius_marker = "30"   # marker radius in Å
+        radius_marker = "28"   # marker radius in Å
         
         # Microtubule parameters
         twist_per_dimer = math.radians(-360/protofilaments)  # left-handed helix
