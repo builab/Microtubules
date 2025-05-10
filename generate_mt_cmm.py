@@ -20,7 +20,7 @@ def generate_microtubule_cmm(filename, protofilaments=13, repeats=4, radius=120,
         dimer_count = 0
         # Predefined colors (normalized 0-1)
         alpha_r, alpha_g, alpha_b = 0.13333, 0.5451, 0.1333  # dark green
-        beta_r, beta_g, beta_b = 0.39216, 0.58431, 0.92941"    # blueish
+        beta_r, beta_g, beta_b = 0.39216, 0.58431, 0.92941    # blueish
         radius_marker = "30"   # marker radius in Å
         
         # Microtubule parameters
